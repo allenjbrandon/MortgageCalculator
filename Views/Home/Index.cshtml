@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/css/Home.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="selection-box-container">
+            <div id="title">
+                <h1>Mortgage Calulator</h1>
+            </div>
+            <div id="housePictureContainer">           
+                <img src="../Content/Pictures/House.jpg" id="housePicture">
+            </div>
+
+            <a href="/nobudget/nobudget" class="buttonLink">
+                <div class="button" id="without-budget">
+                    <h3>I Don't Have a Budget</h3>
+                </div>
+            </a>
+            <a href="/budget/budget" class="buttonLink">
+                <div class="button" id="with-budget">
+                    <h3>I Have a Budget</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+

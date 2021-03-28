@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "Budget";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/css/Budget.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+</head>
+<body>
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Your Home Price!</h1>
+            <hr />
+            <h1 id="finalHomePrice">Test</h1>
+            <hr />
+            <p id="finalDownpayment"></p>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="inputField">
+            <div class="wrapper">
+                <div id="housePictureContainer">
+                    <img src="../Content/Pictures/House.jpg" id="housePicture">
+                </div>
+            </div>
+            <div class="wrapper">
+                <div>
+                    <h1>Monthly Payment</h1>
+                    <h3>(After 20% Downpayment)</h3>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="5000" value="50" class="slider" id="monthlyRange">
+                        <p>$<span id="monthlyPaymentValue"></span></p>
+                    </div>
+
+                    <script>
+                        var slider = document.getElementById("monthlyRange");
+                        var monthlyPaymentOutput = document.getElementById("monthlyPaymentValue");
+                        monthlyPaymentOutput.innerHTML = slider.value;
+
+                        slider.oninput = function () {
+                            monthlyPaymentOutput.innerHTML = this.value;
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div class="submitButtonWrapper">
+
+                <button class="submitButton" id="myBtn">Submit</button>
+                <hr>
+                <div id="downPaymentNumber">
+                    <h1 id="houseCostDP"></h1>
+                </div>
+
+            </div>
+
+            <script>
+                function getHouseValue() {
+
+                    //M = P[r(1+r)^n/((1+r)^n)-1)]
+
+                    var r = @ViewData["InterestRate"] / 12;
+                    var divisor = r * Math.pow((1 + r), 360);
+                    var divident = (Math.pow((1 + r), 360)) - 1;
+                    var finalPrincipal = Math.round((document.getElementById("monthlyRange").value) / (divisor / divident));
+                    document.getElementById("finalHomePrice").innerHTML = "$" + finalPrincipal;
+
+                    var downPayment = Math.round(finalPrincipal * .2);
+                    document.getElementById("finalDownpayment").innerHTML = "Your Downpayment at 20% would be $" + downPayment;
+                }
+
+                var modal = document.getElementById("myModal");
+
+                var btn = document.getElementById("myBtn");
+
+                var span = document.getElementsByClassName("close")[0];
+
+                btn.onclick = function () {
+                    getHouseValue();
+                    modal.style.display = "block";
+                }
+
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewData["Title"] = "NoBudget";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/css/NoBudget.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+</head>
+<body>
+    <div id="monthlyCostModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Monthly Costs Budgetted for you!</h1>
+            <hr />
+            <h3 id="highMonthly"></h3>
+            <h3 id="middleMonthly"></h3>
+            <h3 id="lowMonthly"></h3>
+            <hr />
+            <h3 id"mortgageWithDownpayment></h3>
+            <a href="/home" class="buttonLink">
+                <h3 id="goHomeLink">Go Back Home to Find your Home Price!</h3>
+            </a>
+        </div>
+
+    </div>
+    
+    <div class="container">
+        <div class="input-box-container">           
+            <div class="priceSuggestionContainer">
+                <img src="../Content/Pictures/priceSuggestion.jpg" id="priceSuggestion">
+            </div>
+            <div class="inputField" id="salaryinput">
+                <h1>Annual Household Income(gross income)</h1>
+                <form>
+                    <select id="salary" name="salary">
+                        <option value="25000">$20,000-$30,000</option>
+                        <option value="35000">$30,000-$40,000</option>
+                        <option value="45000">$40,000-$50,000</option>
+                        <option value="55000">$50,000-$60,000</option>
+                        <option value="65000">$60,000-$70,000</option>
+                        <option value="75000">$70,000-$80,000</option>
+                        <option value="85000">$80,000-$90,000</option>
+                        <option value="95000">$90,000-$100,000</option>
+                        <option value="125000">$100,000-$125,000</option>
+                        <option value="137500">$125,000-$150,000</option>
+                        <option value="175000">$150,000-$200,000</option>
+                        <option value="250000">$200,000-$300,000</option>
+                        <option value="400000">$300,000-$500,000</option>
+                        <option value="500000">$500,000+</option>
+                    </select>
+                </form>
+                <hr>
+            </div>
+            <div class="inputField" id="debtToIncome">
+                <h1>Current Minimum Payments on All Credit Cards and Loans Every Month (Not including Mortgage/Rent)</h1>
+                <ul>Make sure to include:</ul>
+                    <li>Car Payments</li>
+                    <li>Installment loan payments</li>
+                    <li>Bank/credit union loans</li>
+                    <li>Student Loan payments</li>
+                    <li>Credit lines</li>
+                <br>
+                <form>
+                    <select id="debt" name="debt">
+                        <option value="100">$0-$200</option>
+                        <option value="300">$200-$400</option>
+                        <option value="500">$400-$600</option>
+                        <option value="700">$600-$800</option>
+                        <option value="900">$800-$1,000</option>
+                        <option value="1125">$1,000-$1,250</option>
+                        <option value="1375">$1,250-$1,500</option>
+                        <option value="1750">$1,500-$2,000</option>
+                        <option value="2250">$2,000-$2,500</option>
+                        <option value="2750">$2,500-$3,000</option>
+                        <option value="3500">$3,000-$4,000</option>
+                        <option value="4500">$4,000-$5,000</option>
+                        <option value="5000">$5,000+</option>
+                    </select>
+                </form>
+                <hr>
+            </div>
+            <div class="inputField" id="debtToIncome">
+                <h1>Amount You Will Put as Downpayment for the House</h1>
+                <h3>Note: This DOES NOT account for closing costs</h3>
+                <form>
+                    <label for="downpayment">Down Payment</label>
+                    <input type="text" id="dpayment" name="dpayment">
+                </form>
+                <p id="downpaymentValidation"></p>
+                <hr>
+            </div>
+            <div class="inputField" id="submitButtonContainer">
+                <button class="submitButton" id="myBtn">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function getMonthlyPayments() {
+        //highMonthlyCost
+            var newGross = document.getElementById("salary").value / 12;
+            var highMonthly = Math.round(newGross * .45 - document.getElementById("debt").value);       
+            document.getElementById("highMonthly").innerHTML = "High Monthly Cost: " + highMonthly;
+
+        //lowMonthlyCost
+            var newGross = document.getElementById("salary").value / 12;
+            var lowMonthly = Math.round(newGross * .25 - document.getElementById("debt").value);
+            document.getElementById("lowMonthly").innerHTML = "Low Monthly Cost: " + lowMonthly;
+            
+        //middleMonthlyCost
+            var newGross = document.getElementById("salary").value / 12;
+            var middleMonthly = Math.round(newGross * .35 - document.getElementById("debt").value);
+            document.getElementById("middleMonthly").innerHTML = "Middle Monthly Cost: " + middleMonthly;
+        }
+
+        function isNumber() {
+            var x, text;
+
+            x = document.getElementById("dpayment").value;
+
+            if (isNaN(x)) {
+                text = "Please Type a Number";
+            } else {
+                text = " ";
+            }
+            document.getElementById("downpaymentValidation").innerHTML = text;
+        }
+
+
+
+        
+        var modal = document.getElementById("monthlyCostModal");
+
+        var btn = document.getElementById("myBtn");
+
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            getMonthlyPayments();
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+    </script>
+
+</body>
+</html>
