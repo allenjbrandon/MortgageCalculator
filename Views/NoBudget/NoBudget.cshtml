@@ -1,4 +1,5 @@
 ﻿
+
 @{
     ViewData["Title"] = "NoBudget";
 }
@@ -10,6 +11,11 @@
     <title>Mortgage Calculator</title>
 </head>
 <body>
+    <a href="/home" class="buttonLink">
+        <div id="homeButton">
+            <h3>HOME</h3>
+        </div>
+    </a>
     <div id="monthlyCostModal" class="modal">
 
         <div class="modal-content">
@@ -20,16 +26,17 @@
             <h3 id="middleMonthly"></h3>
             <h3 id="lowMonthly"></h3>
             <hr />
-            <h3 id"mortgageWithDownpayment></h3>
+            <h3 id="mortgageWithDownpayment"></h3>
+            <hr />
             <a href="/home" class="buttonLink">
                 <h3 id="goHomeLink">Go Back Home to Find your Home Price!</h3>
             </a>
         </div>
 
     </div>
-    
+
     <div class="container">
-        <div class="input-box-container">           
+        <div class="input-box-container">
             <div class="priceSuggestionContainer">
                 <img src="../Content/Pictures/priceSuggestion.jpg" id="priceSuggestion">
             </div>
@@ -58,11 +65,11 @@
             <div class="inputField" id="debtToIncome">
                 <h1>Current Minimum Payments on All Credit Cards and Loans Every Month (Not including Mortgage/Rent)</h1>
                 <ul>Make sure to include:</ul>
-                    <li>Car Payments</li>
-                    <li>Installment loan payments</li>
-                    <li>Bank/credit union loans</li>
-                    <li>Student Loan payments</li>
-                    <li>Credit lines</li>
+                <li>Car Payments</li>
+                <li>Installment loan payments</li>
+                <li>Bank/credit union loans</li>
+                <li>Student Loan payments</li>
+                <li>Credit lines</li>
                 <br>
                 <form>
                     <select id="debt" name="debt">
@@ -83,7 +90,7 @@
                 </form>
                 <hr>
             </div>
-            <div class="inputField" id="debtToIncome">
+            <div class="inputField" id="downPaymentContainer">
                 <h1>Amount You Will Put as Downpayment for the House</h1>
                 <h3>Note: This DOES NOT account for closing costs</h3>
                 <form>
@@ -100,22 +107,26 @@
     </div>
 
     <script>
-
+        
         function getMonthlyPayments() {
-        //highMonthlyCost
+            //highMonthlyCost
             var newGross = document.getElementById("salary").value / 12;
-            var highMonthly = Math.round(newGross * .45 - document.getElementById("debt").value);       
+            var highMonthly = Math.round(newGross * .45 - document.getElementById("debt").value);
             document.getElementById("highMonthly").innerHTML = "High Monthly Cost: " + highMonthly;
 
-        //lowMonthlyCost
+            //lowMonthlyCost
             var newGross = document.getElementById("salary").value / 12;
             var lowMonthly = Math.round(newGross * .25 - document.getElementById("debt").value);
             document.getElementById("lowMonthly").innerHTML = "Low Monthly Cost: " + lowMonthly;
-            
-        //middleMonthlyCost
+
+            //middleMonthlyCost
             var newGross = document.getElementById("salary").value / 12;
             var middleMonthly = Math.round(newGross * .35 - document.getElementById("debt").value);
             document.getElementById("middleMonthly").innerHTML = "Middle Monthly Cost: " + middleMonthly;
+
+            //downpayment to mortgage
+            var mortgageFromDownPayment = document.getElementById("dpayment").value * 5;
+            document.getElementById("mortgageWithDownpayment").innerHTML = "Your downpayment would be 20% of a $" + mortgageFromDownPayment + " house.";
         }
 
         function isNumber() {
@@ -133,7 +144,7 @@
 
 
 
-        
+
         var modal = document.getElementById("monthlyCostModal");
 
         var btn = document.getElementById("myBtn");
@@ -141,8 +152,21 @@
         var span = document.getElementsByClassName("close")[0];
 
         btn.onclick = function () {
-            getMonthlyPayments();
-            modal.style.display = "block";
+
+            var x, text;
+
+            x = document.getElementById("dpayment").value;
+
+            if (isNaN(x)) {
+                text = "Please Type a Number";
+                document.getElementById("downpaymentValidation").innerHTML = text;
+            } else if (x == "") {
+                text = "Please type a number";
+                document.getElementById("downpaymentValidation").innerHTML = text;
+            } else {
+                getMonthlyPayments();
+                modal.style.display = "block";
+            }
         }
 
         span.onclick = function () {

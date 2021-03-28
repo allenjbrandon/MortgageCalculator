@@ -1,5 +1,26 @@
-.container {
+#homeButton {
+    box-shadow: 10px 10px 5px grey;
+    border-radius: 10px;
+    position: relative;
+    top: -10px;
+    z-index: 1;
+    height: 30px;
+    text-align: center;
+    width: 20%;
+    margin: auto;
+    display: block;
+}
 
+.buttonLink:hover {
+    text-decoration: none;
+}
+
+.buttonLink:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+.container {
   height: 1000px;
   display: flex;
     justify-content: center;
@@ -9,9 +30,8 @@
 }
 
 .inputField {
-
   width: 1200px;
-  height: 800px;
+  height: 900px;
   background-color: #b5c8e6;
   border-radius: 30px;
   box-shadow: 10px 10px 5px grey;
@@ -22,136 +42,151 @@
   padding: 300px;
 }
 
-h1 {
-    text-align: center;
-}
-
-.wrapper {
-  width: 600px;
-  align-content: center;
-  justify-content: center;
-  padding-top: 80px;
-}
-
-
-#housePictureContainer {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-}
-
-#housePicture {
-  height: 250px;
-  border-radius: 30px;
-}
-
-.slidecontainer {
-  width: 100%;
-}
-
-.slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 25px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  background: #4CAF50;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: #4CAF50;
-  cursor: pointer;
-}
-
-.submitButton {
-  padding: 16px 32px;
-  border-radius: 30px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: auto;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-}
-
-.submitButton:hover {
-  background-color: black;
-  color: white;
-}
-
-button {
-  height: 50px;
-  width: 160px;
-}
-
-.submitButton {
-  display: grid;
-}
-
-.debtToIncome {
-  display: grid;
-}
-#downpaymentValidation {
-  padding-left: 400px;
-  color: white;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 500px; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
+@media(max-width: 1200px) {
+    .inputField {
+        width: 500px;
+        height: 900px;
+        background-color: #b5c8e6;
+        border-radius: 30px;
+        box-shadow: 10px 10px 5px grey;
+        display: grid;
+        grid-template-rows: 300px 300px 300px;
+        align-content: center;
+        justify-content: center;
+        padding: 300px;
     }
+}
+    h1 {
+        text-align: center;
+    }
+
+    .wrapper {
+        width: 600px;
+        align-content: center;
+        justify-content: center;
+        padding-top: 80px;
+    }
+
+
+    #housePictureContainer {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+    }
+
+    #housePicture {
+        height: 250px;
+        border-radius: 30px;
+    }
+
+    .slidecontainer {
+        width: 100%;
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 25px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+    .submitButton {
+        padding: 16px 32px;
+        border-radius: 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: auto;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+    }
+
+        .submitButton:hover {
+            background-color: black;
+            color: white;
+        }
+
+    button {
+        height: 50px;
+        width: 160px;
+    }
+
+    .submitButton {
+        display: grid;
+    }
+
+    .debtToIncome {
+        display: grid;
+    }
+
+    #downpaymentValidation {
+        padding-left: 400px;
+        color: white;
+    }
+
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 500px;
+    }
+
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
